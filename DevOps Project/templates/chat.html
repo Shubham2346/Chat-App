@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block title %}Chat - {{ current_user }}{% endblock %}
+
+{% block content %}
+    <h2>Welcome, {{ current_user }}!</h2>
+    <div id="chat-box">
+        {% for message in messages %}
+            <p><strong>{{ message.user }}:</strong> {{ message.content }} <small>{{ message.timestamp }}</small></p>
+        {% endfor %}
+    </div>
+    <form method="POST" action="/chat">
+        <input type="text" name="message" id="message-input" placeholder="Type your message" required>
+        <div class="button-group">
+            <button type="submit">Send</button>
+            <button onclick="window.location.href='/logout'">Logout</button>
+        </div>
+    </form>
+
+{% endblock %}
